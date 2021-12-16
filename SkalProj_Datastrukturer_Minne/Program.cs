@@ -1,6 +1,10 @@
 ﻿using System;
 
 namespace SkalProj_Datastrukturer_Minne
+
+    /*
+     Test
+      */
 {
     class Program
     {
