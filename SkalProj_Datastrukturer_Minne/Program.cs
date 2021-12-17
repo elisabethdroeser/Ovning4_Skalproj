@@ -2,9 +2,36 @@
 
 namespace SkalProj_Datastrukturer_Minne
 
-    /*
-     Test
-      */
+/*
+ 1.  Stack och heap.   
+Stack – LIFO (last in first out)
+Används för statisk minneshantering med LIFO tänk.
+Variablarna ”lagras” direkt i minnet och är lätta att få tag i.
+När en metod anropas som kontaktar en ytterligare metod och så vidare så pausas svaret innan alla metoder har anropats och metodens returnerar sitt värde.
+Stacken är trådspecifik.
+Ansvarig för att hålla reda på koden och vilken kod som körs.
+Stacken är självförsörjande, vilket innebär att den i princip tar hand om sin egen minneshantering. 
+
+Heap
+Används för dynamisk minneshantering. 
+Är applikationsspecifik.
+Ansvarig för att hålla reda på våra objekt.
+Det finns ingen begränsning för vad som kan nås i stacken.  
+Heap har Garbage Collection (GC).
+Hanterar reference types
+
+Båda lagras i datorns RAM-minne.
+
+2.     Value type o reference types
+
+Value types och reference types är de två huvudkategorierna i C#.
+En variabel av en value type innehåller en instans av typen. Ligger i System.ValueType och är t ex bool, double eller char.
+Reference type skiljer sig och innehåller en referens till en instans, d v s inte innehåller det faktiska värdet. Den ärver av System.Object och är t ex en class, object eller interface.
+
+3.    
+a.     Du skapar x och ger den ett värde av 3. Du skapar y och skriver y = x men samtidigt så ger du y ett värde av 4. Här ändras inte värdet x. Du returnerar här det värdet du eftersöker x vilket är 3.  En value type.
+b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med värdet y. y = 3 blir tre men därefter så ändrar du y till 4. Du returnerar värdet y som då blir 4. En reference types
+  */
 {
     class Program
     {
