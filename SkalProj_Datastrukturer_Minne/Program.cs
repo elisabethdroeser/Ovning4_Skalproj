@@ -94,7 +94,7 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
         static void ExamineList()
         {
             /*
-             * Loop this method untill the user inputs something to exit to main menue.
+             * Loop this method until the user inputs something to exit to main menue.
              * Create a switch statement with cases '+' and '-'
              * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
              * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
@@ -103,12 +103,28 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            List<string> theList = new List<string>();
+            string input = Console.ReadLine();
+            char nav = input[0];
+            string value = input.substring(1);
 
-            //switch(nav){...}
+            do 
+            { 
+                Console.WriteLine("Add or remove item to/in list below");
+                value = value.Trim();
+            
+            }
+            switch(nav)
+            {
+                case '+':
+                    theList.Add(value);
+                    break;
+                case '-':
+                    theList.Remove(value);
+                    break;
+                default:    
+                    Console.WriteLine("Please add or remove item. ");
+            }
         }
 
         /// <summary>
