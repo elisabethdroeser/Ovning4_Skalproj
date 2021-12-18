@@ -110,20 +110,29 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
 
             do 
             { 
-                Console.WriteLine("Add or remove item to/in list below");
+                Console.WriteLine("\tExamine list");
+                Console.WriteLine("----------------------------------------");
+                Console.WriteLine("Please write + to add an item to the list");
+                Console.WriteLine("Please write - to remove an item from the list");
+                Console.WriteLine("Press 0 to exit the list");
+
                 value = value.Trim();
+                
             
+                switch(nav)
+                {
+                    case '+':
+                        theList.Add(value);
+                        break;
+                    case '-':
+                        theList.Remove(value);
+                        break;
+                    default:    
+                        Console.WriteLine("Please add or remove item.");
+                        break;
+                }
             }
-            switch(nav)
-            {
-                case '+':
-                    theList.Add(value);
-                    break;
-                case '-':
-                    theList.Remove(value);
-                    break;
-                default:    
-                    Console.WriteLine("Please add or remove item. ");
+            while (nav != 0);
             }
         }
 
@@ -158,9 +167,7 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
-
         }
-
     }
 }
 
