@@ -27,24 +27,25 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
         static void Main()
         {
             while (true)
-            {       //helst i en egen metod. ligger i en en while loop tills programmet dör. 
+            {                                                                                   //helst i en egen metod. ligger i en en while loop tills programmet dör. 
                 Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParanthesis"
                     + "\n0. Exit the application");
-                char input = ' '; //Creates the character input to be used with the switch-case below. Använder input för att se om något skrivits. 
+
+                char input = ' ';                                                               //Creates the character input to be used with the switch-case below. Använder input för att se om något skrivits. 
                 try
                 {
-                    input = Console.ReadLine()![0]; //Tries to set input to the first char in an input line
+                    input = Console.ReadLine()![0];                                             //Tries to set input to the first char in an input line
                 }
-                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                catch (IndexOutOfRangeException)                                                //If the input line is empty, we ask the users for some input.
                 {
                     Console.Clear();
                     Console.WriteLine("Please enter some input!");
                 }
-                switch (input)//använder switch statement för att kalla på respektive metod
+                switch (input)                                                                  //använder switch statement för att kalla på respektive metod
                 {
                     case '1':
                         ExamineList();
@@ -69,16 +70,12 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
         }
 
 
-        static void ExamineList() //list har en underliggande array med en fix storlek. hu ren lista fungerar. en lista är dynamisk. ökar storlek
+        static void ExamineList()                                                               //list har en underliggande array med en fix storlek. hu ren lista fungerar. en lista är dynamisk. ökar storlek
         {
-            //count
-            //capacity
-            //addtolist
-            //removefromlist
-
+   
             var list = new List<string>();
-            bool finish = false;
-            Console.Clear();
+            bool finish = false;                                                                //kontrollvariabel för att se så att användaren är nöjd. avbryta
+            Console.Clear();                                                                    //städa upp consolen.
 
             Console.WriteLine("Examine List:" +
                 "\n'+': Add new element from list" +
@@ -86,17 +83,70 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
                 "\n'p': Print all in list" +
                 "\n'0': Exit back to main menu");
 
-            do //lägga listan utanför scopet. då förnyas listan o det vill vi inte 
+            do                                                                                  //lägga listan utanför scopet. då förnyas listan o det vill vi inte 
             {
                 var input = Console.ReadLine();
-                var nav = input[0];//om de skriver +Adam. Resten ska läggas till listan. Plocka ut den första karaktären i inputen för att använda i switch
-                var value = input.Substring(1); //de faktiska värdet. outputen.
+                var nav = input[0];                                                             //om de skriver +Adam. Resten ska läggas till listan. Plocka ut den första karaktären i inputen för att använda i switch
+                var value = input.Substring(1);                                                 //de faktiska värdet. outputen.
+
+                switch (nav)
+                {
+                    case '+':
+                        AddToList(value, list);
+                        break;
+                    case '-':
+                        RemoveFromList(value, list);
+                        break;
+                    case 'p':
+                        PrintList();
+                        break;
+                    case '0':
+                        finish = true;
+                        Console.Clear();
+                        break;
+                    default:
+                        Console.WriteLine("Do as you are told\n");
+                        break;
+                }
             } while (finish);
+        }
+
+        private static void PrintList(List<string> list)
+        {
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        private static void RemoveFromList(string value, List<string> list)
+        {
+            var removalSuccessfull = list.Remove(value);
+            if (removalSuccessfull)
+            {
+                Console.WriteLine($"\"{value}\" has been removed from the list ");
+                Console.WriteLine($"Current number of elements: {list.Count}");                
+                Console.WriteLine($"Current capacity of list: {list.Capacity}");
+            } 
+            else
+            {
+                Console.WriteLine($"\"{value}\" not found in list ");
+            }
+        }
+
+        private static void AddToList(string value, List<string> list)
+        {
+                                                                                                //lägger till en lista. Capacity och count
+            list.Add(value);
+            Console.WriteLine($"\"{value}\" has been added to the list ");
+            Console.WriteLine($"Current number of elements: {list.Count}");                     //Hur många saker finns det i listan nu?
+            Console.WriteLine($"Current capacity of list: {list.Capacity}");                    //Hur "stor" är listan nu?    
         }
 
         static void ExamineQueue()
         {
-        }
+
+        }   
 
         static void ExamineStack()
         {
