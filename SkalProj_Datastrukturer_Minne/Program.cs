@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SkalProj_Datastrukturer_Minne
+﻿namespace SkalProj_Datastrukturer_Minne
 
 /*
  1.  Stack och heap.   
@@ -72,7 +70,7 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
 
         static void ExamineList()                                                               //list har en underliggande array med en fix storlek. hu ren lista fungerar. en lista är dynamisk. ökar storlek
         {
-   
+
             var list = new List<string>();
             bool finish = false;                                                                //kontrollvariabel för att se så att användaren är nöjd. avbryta
             Console.Clear();                                                                    //städa upp consolen.
@@ -98,17 +96,17 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
                         RemoveFromList(value, list);
                         break;
                     case 'p':
-                        PrintList();
+                        PrintList(list);
                         break;
                     case '0':
                         finish = true;
                         Console.Clear();
                         break;
                     default:
-                        Console.WriteLine("Do as you are told\n");
+                        Console.WriteLine("^Please press +, -, p or 0. \n");
                         break;
                 }
-            } while (finish);
+            } while (!finish);
         }
 
         private static void PrintList(List<string> list)
@@ -125,28 +123,79 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
             if (removalSuccessfull)
             {
                 Console.WriteLine($"\"{value}\" has been removed from the list ");
-                Console.WriteLine($"Current number of elements: {list.Count}");                
+                Console.WriteLine($"Current number of elements: {list.Count}");
                 Console.WriteLine($"Current capacity of list: {list.Capacity}");
-            } 
+            }
             else
             {
-                Console.WriteLine($"\"{value}\" not found in list ");
+                Console.WriteLine($"\"{value}\" not found in list");
             }
         }
 
         private static void AddToList(string value, List<string> list)
         {
-                                                                                                //lägger till en lista. Capacity och count
+            //lägger till en lista. Capacity och count
             list.Add(value);
-            Console.WriteLine($"\"{value}\" has been added to the list ");
+            Console.WriteLine($"\"{value}\" has been added to the list");
             Console.WriteLine($"Current number of elements: {list.Count}");                     //Hur många saker finns det i listan nu?
-            Console.WriteLine($"Current capacity of list: {list.Capacity}");                    //Hur "stor" är listan nu?    
+            Console.WriteLine($"Current capacity of list: {list.Capacity}\n");                  //Hur "stor" är listan nu?    
         }
 
         static void ExamineQueue()
         {
+            var queue = new Queue<string>();
+            bool finish = false;
+            Console.Clear();
 
-        }   
+            Console.WriteLine("Examine Queue:" +
+                "\n'+': Add new element from queue" +
+                "\n'p': Print all in queue" +
+                "\n'0': Exit back to main menu");
+
+            do
+            {
+                var input = Console.ReadLine();
+                var nav = input[0];
+                var value = input.Substring(1);                                                 //de faktiska värdet. outputen.
+
+                switch (nav)
+                {
+                    case '+':
+                        AddToQueue(value, queue);
+                        break;
+                    case '-':
+                        RemoveFromQueue(queue);
+                        break;
+                    case 'p':
+                        PrintQueue(queue);
+                        break;
+                    case '0':
+                        finish = true;
+                        Console.Clear();
+                        break;
+                    default:
+                        Console.WriteLine("^Please press +, -, p or 0. \n");
+                        break;
+                }
+            } while (!finish);
+        }
+
+        //Simulera ICA-kön
+        private static void PrintQueue(Queue<string> queue)
+        {
+
+        }
+
+        private static void RemoveFromQueue(Queue<string> queue)
+        {
+
+        }
+
+        private static void AddToQueue(string value, Queue<string> queue)
+        {
+            queue.Enqueue(value);
+            Console.WriteLine($"\"{value}\" has been added to the queue.\n");
+        }
 
         static void ExamineStack()
         {
@@ -158,5 +207,7 @@ b.     Du skapar ett objekt med värdet x. Därefter skapar du ett objekt med v�
 
         }
     }
+
 }
+
 
